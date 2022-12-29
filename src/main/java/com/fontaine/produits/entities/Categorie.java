@@ -2,6 +2,8 @@ package com.fontaine.produits.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +27,10 @@ public class Categorie {
 
 	private String descriptionCategorie;
 
+	
 	@OneToMany(mappedBy = "categorie")
+	//pour eviter la boucle infini lors de la récupération de la catégorie d'un produit
+	@JsonIgnore
 	private List<Produit> produits;
 
 }
